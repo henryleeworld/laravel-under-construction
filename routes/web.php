@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +12,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::group(['middleware' => 'under-construction'], function () {
     Route::get('/', function () {
         return view('welcome');

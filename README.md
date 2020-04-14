@@ -1,4 +1,4 @@
-# Laravel 6 網站施工中
+# Laravel 7 網站施工中
 
 引入 larsjanssen6 的 underconstruction 套件來擴增網站暫時設置為網站施工中，讓網站在施工期間顯示維修中的頁面。
 
