@@ -1,4 +1,4 @@
-# Laravel 7 網站施工中
+# Laravel 8 網站施工中
 
 引入 larsjanssen6 的 underconstruction 套件來擴增網站暫時設置為網站施工中，讓網站在施工期間顯示維修中的頁面。
 
@@ -26,8 +26,8 @@ $ php artisan code:set 六位數字代碼
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/oiDiuHu.png)
+![](https://i.imgur.com/elwFBnx.png)
 > 輸入錯誤的數字代碼會提醒剩餘次數
 
-![](https://i.imgur.com/lC8CZU7.png)
+![](https://i.imgur.com/u5PcTN9.png)
 > 輸入正確的數字代碼就可以進入原本頁面
