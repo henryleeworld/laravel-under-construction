@@ -1,4 +1,4 @@
-# Laravel 9 網站施工中
+# Laravel 10 網站施工中
 
 引入 larsjanssen6 的 underconstruction 套件來擴增網站暫時設置為網站施工中，讓網站在施工期間顯示維修中的頁面。
 
@@ -18,7 +18,7 @@ $ php artisan key:generate
 ```
 - 設定可以通過施工中進入的六位數字代碼。
 ```sh
-$ php artisan code:set 六位數字代碼
+$ php artisan code:set {六位數字代碼}
 ```
 - 在瀏覽器中輸入已定義的路由 URL 來訪問，例如：http://127.0.0.1:8000。
 - 你可以經由 `/` 來進入頁面前跳到網站施工中，輸入正確的數字代碼就可以進入。
@@ -26,8 +26,8 @@ $ php artisan code:set 六位數字代碼
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/7e0tcyc.png)
+![](https://i.imgur.com/Zen8bP3.png)
 > 輸入錯誤的數字代碼會提醒剩餘次數
 
-![](https://i.imgur.com/Sp5cPm1.png)
+![](https://i.imgur.com/gZoUdTq.png)
 > 輸入正確的數字代碼就可以進入原本頁面
