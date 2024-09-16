@@ -1,6 +1,6 @@
-# Laravel 10 網站施工中
+# Laravel 11 網站施工中
 
-引入 larsjanssen6 的 underconstruction 套件來擴增網站暫時設置為網站施工中，讓網站在施工期間顯示維修中的頁面。
+引入 gestazion 的 underconstruction 套件來擴增網站暫時設置為網站施工中，讓網站在施工期間顯示維修中的頁面。
 
 ## 使用方式
 - 把整個專案複製一份到你的電腦裡，這裡指的「內容」不是只有檔案，而是指所有整個專案的歷史紀錄、分支、標籤等內容都會複製一份下來。
@@ -26,8 +26,8 @@ $ php artisan code:set {六位數字代碼}
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/Zen8bP3.png)
+![](https://i.imgur.com/8LbL36t.png)
 > 輸入錯誤的數字代碼會提醒剩餘次數
 
-![](https://i.imgur.com/gZoUdTq.png)
+![](https://i.imgur.com/xcVya5E.png)
 > 輸入正確的數字代碼就可以進入原本頁面

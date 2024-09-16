@@ -15,7 +15,7 @@ return [
     /*
      * Under construction title.
      */
-    'title' => '網站施工中',
+    'title' => 'Under Construction',
 
     /*
      * Custom Route Prefix
@@ -32,17 +32,17 @@ return [
     /*
      * Back button translation.
      */
-    'back-button' => '倒退',
+    'back-button' => 'back',
 
     /*
     * Show button translation.
     */
-    'show-button' => '顯示',
+    'show-button' => 'show',
 
     /*
      * Hide button translation.
      */
-    'hide-button' => '隱藏',
+    'hide-button' => 'hide',
 
     /*
      * Show loader.
@@ -84,12 +84,12 @@ return [
     /*
      * Attempts left message.
      */
-    'attempts_message' => '還有 %i 次嘗試機會',
+    'attempts_message' => 'Attempts left: %i',
 
     /*
      * Too many attempts message.
      */
-    'seconds_message' => '嘗試登入太多次，請在 %i 秒後再試。',
+    'seconds_message' => 'Too many attempts please try again in %i seconds.',
 
     /*
      * Set the number of minutes to disable login.
