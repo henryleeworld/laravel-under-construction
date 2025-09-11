@@ -8,12 +8,22 @@ use LarsJanssen\UnderConstruction\Controllers\CodeController as OriginCodeContro
 
 class AppServiceProvider extends ServiceProvider
 {
+
+    /**
+     * All of the container bindings that should be registered.
+     *
+     * @var array
+     */
+    public $bindings = [
+        OriginCodeController::class => CodeController::class,
+    ];
+
     /**
      * Register any application services.
      */
     public function register(): void
     {
-        $this->app->bind(OriginCodeController::class, CodeController::class);
+        //
     }
 
     /**

@@ -2,39 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Config\Repository;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Hash;
-use LarsJanssen\UnderConstruction\Throttle;
-use LarsJanssen\UnderConstruction\Facades\TransFormer;
+use LarsJanssen\UnderConstruction\Controllers\CodeController as BaseCodeController;
 
-class CodeController extends Controller
+class CodeController extends BaseCodeController
 {
-    use Throttle;
-
-    /**
-     * Configurations from config file.
-     *
-     * @var array
-     */
-    protected $config;
-
-    /**
-     * The maximum number of attempts to allow.
-     *
-     * @int
-     */
-    protected $maxAttempts;
-
-    /**
-     * The the number of minutes to disable login.
-     *
-     * @int
-     */
-    protected $decayMinutes;
-
     /**
      * CodeController constructor.
      *
@@ -42,115 +14,14 @@ class CodeController extends Controller
      */
     public function __construct(Repository $config)
     {
-        $this->config = $config->get('under-construction');
-        $this->maxAttempts = $this->config['max_attempts'];
-        $this->decayMinutes = $this->config['decay_minutes'];
-    }
-
-    /**
-     * @return \Illuminate\View\View
-     */
-    public function index()
-    {
-        return view('views::index')->with([
-            'title'       => __($this->config['title']),
-            'backButton'  => __($this->config['back-button']),
-            'showButton'  => __($this->config['show-button']),
-            'hideButton'  => __($this->config['hide-button']),
-            'showLoader'  => $this->config['show-loader'],
-            'totalDigits' => $this->config['total_digits'],
-            'redirectUrl' => session()->get('intended.url', $this->config['redirect-url']),
-        ]);
-    }
-
-    /**
-     * Check if the given code is correct,
-     * then return the proper response.
-     *
-     * @param  Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws Exception
-     */
-    public function check(Request $request)
-    {
-        $request->validate(['code' => 'required|numeric']);
-
-        if (Hash::check($request->code, $this->getHash())) {
-            session(['can_visit' => true]);
-
-            return response([
-                'status' => 'success',
-            ]);
-        }
-
-        $this->incrementLoginAttempts($request);
-
-        if ($this->hasTooManyLoginAttempts($request) && $this->throttleIsActive()) {
-            return response([
-                'too_many_attempts' => true,
-                'seconds_message'  => TransFormer::transform($this->getBlockedSeconds($request), __($this->config['seconds_message'])),
-            ], 401);
-        }
-
-        return response([
-            'too_many_attempts' => false,
-            'attempts_left'    => $this->showAttempts($request),
-        ], 401);
-    }
-
-    public function checkIfLimited(Request $request)
-    {
-        if ($this->hasTooManyLoginAttempts($request) && $this->throttleIsActive()) {
-            return response([
-                'too_many_attempts' => true,
-                'seconds_message'  => TransFormer::transform($this->getBlockedSeconds($request), __($this->config['seconds_message'])),
-            ], 401);
-        }
-
-        return response([
-            'too_many_attempts' => false,
-        ], 200);
-    }
-
-    /**
-     * Determine if throttle is activated in config file.
-     *
-     * @return bool
-     */
-    private function throttleIsActive()
-    {
-        return $this->config['throttle'];
-    }
-
-    /**
-     * Determine attempts that are left.
-     *
-     * @param  Request  $request
-     * @return int | bool
-     */
-    private function showAttempts(Request $request)
-    {
-        if ($this->config['show_attempts_left'] && $this->config['throttle']) {
-            return TransFormer::transform($this->retriesLeft($request), __($this->config['attempts_message']));
-        }
-
-        return false;
-    }
-
-    /**
-     * Get the hash from .txt file.
-     *
-     * @return bool|string
-     *
-     * @throws Exception
-     */
-    private function getHash()
-    {
-        if (isset($this->config['hash']) && $this->config['hash']) {
-            return $this->config['hash'];
-        } else {
-            throw new Exception('Please make sure you have set a code with php artisan code:set ****');
-        }
+        $this->config                     = $config->get('under-construction');
+        $this->config['attempts_message'] = __($this->config['attempts_message']);
+        $this->config['back-button']      = __($this->config['back-button']);
+        $this->config['hide-button']      = __($this->config['hide-button']);
+        $this->config['seconds_message']  = __($this->config['seconds_message']);
+        $this->config['show-button']      = __($this->config['show-button']);
+        $this->config['title']            = __($this->config['title']);
+        $this->maxAttempts                = $this->config['max_attempts'];
+        $this->decayMinutes               = $this->config['decay_minutes'];
     }
 }

@@ -1,4 +1,4 @@
-# Laravel 11 網站施工中
+# Laravel 12 網站施工中
 
 引入 gestazion 的 underconstruction 套件來擴增網站暫時設置為網站施工中，讓網站在施工期間顯示維修中的頁面。
 
@@ -16,6 +16,10 @@ $ composer install
 ```sh
 $ php artisan key:generate
 ```
+- 執行 __Artisan__ 指令的 __migrate__ 來執行所有未完成的遷移。
+```sh
+$ php artisan migrate
+```
 - 設定可以通過施工中進入的六位數字代碼。
 ```sh
 $ php artisan code:set {六位數字代碼}
@@ -26,8 +30,8 @@ $ php artisan code:set {六位數字代碼}
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/8LbL36t.png)
+![](https://i.imgur.com/T16qXHV.png)
 > 輸入錯誤的數字代碼會提醒剩餘次數
 
-![](https://i.imgur.com/xcVya5E.png)
+![](https://i.imgur.com/TWS1nAO.png)
 > 輸入正確的數字代碼就可以進入原本頁面
